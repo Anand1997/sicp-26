@@ -44,3 +44,16 @@
 (append l1 l2)
 (length-2 l1)
 (length-2 l2)
+
+;; Extended Interval
+(define (accum-n op init seqs)
+  (if (null? (car seqs))
+      nil
+      (cons (accum op init (map car seqs))
+            (accum-n op init (map cdr seqs)))))
+
+(define (mmap op . lists)
+  (if (null? (car lists))
+      nil
+      (cons (apply op (map car lists))
+            (apply mmap (cons op (map cdr lists))))))
