@@ -17,3 +17,8 @@
                 (dot-product row col))
               (transpose n)))
        m))
+
+(#%provide dot-product) ; Explicitly export the function
+(#%provide transpose) ; Explicitly export the function
+(#%provide matrix-*-vector) ; Explicitly export the function
+(#%provide matrix-*-matrix) ; Explicitly export the function
