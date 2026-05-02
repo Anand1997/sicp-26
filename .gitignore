@@ -1,2 +1,4 @@
 ch2/.vscode/tasks.json
 ch2/compiled/*
+.zed/*
+*.bak

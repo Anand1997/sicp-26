@@ -1,7 +1,4 @@
 #lang sicp
-; Scratch file
-
-
 ;; Conventional Interface
 
 ;; map
@@ -38,7 +35,7 @@
   (accum (lambda (_ ans) (+ 1 ans)) 0 seqs))
 
 
-;; Test
+;; Simple Test
 (define l1 '(1 2 3))
 (define l2 '(5 7 9 8))
 (define (sq x) (* x x))
