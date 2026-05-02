@@ -23,6 +23,7 @@
                (filter predicate (cdr seqs))))
         (else (filter predicate (cdr seqs)))))
 
+;; TODO : Move this to new file
 (define (map-2 p seqs)
   ; x => current problem input
   ; y => smaller problem output
@@ -34,16 +35,6 @@
 (define (length-2 seqs)
   (accum (lambda (_ ans) (+ 1 ans)) 0 seqs))
 
-
-;; Simple Test
-(define l1 '(1 2 3))
-(define l2 '(5 7 9 8))
-(define (sq x) (* x x))
-
-(map-2 sq l1)
-(append l1 l2)
-(length-2 l1)
-(length-2 l2)
 
 ;; Extended Interval
 (define (accum-n op init seqs)
@@ -57,3 +48,10 @@
       nil
       (cons (apply op (map car lists))
             (apply mmap (cons op (map cdr lists))))))
+
+
+(#%provide map) ; Explicitly export the function
+(#%provide accum) ; Explicitly export the function
+(#%provide filter) ; Explicitly export the function
+(#%provide accum-n) ; Explicitly export the function
+(#%provide mmap) ; Explicitly export the function
