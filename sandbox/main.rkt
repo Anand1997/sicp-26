@@ -40,10 +40,26 @@
 
 ;; Test
 (define l1 '(1 2 3))
-(define l2 '(5 7 9 8))
+(define l2 '(5 7 9))
 (define (sq x) (* x x))
 
 (map-2 sq l1)
 (append l1 l2)
 (length-2 l1)
 (length-2 l2)
+
+; Extended Interfaces
+(define (accum-n op init seqs)
+  (if (null? (car seqs))
+      nil
+      (cons (accum op init (map car seqs))
+            (accum-n op init (map cdr seqs)))))
+
+(define (mmap op . lists)
+  (if (null? (car lists))
+      nil
+      (cons (apply op (map car lists))
+            (apply mmap (cons op (map cdr lists))))))
+(mmap + '(1 2 3) '(2 2 2))
+
+;; Exercise 2.37 : Matrix multiplication
