@@ -37,6 +37,13 @@
 
 
 ;; Extended Interval
+
+(define (enumerate-interval start end)
+  (if (> start end)
+      '()
+      (cons start
+            (enumerate-interval (+ start 1) end))))
+
 (define (accum-n op init seqs)
   (if (null? (car seqs))
       nil
@@ -49,9 +56,13 @@
       (cons (apply op (map car lists))
             (apply mmap (cons op (map cdr lists))))))
 
+(define (flatmap proc sequence)
+  (accum append nil (map proc sequence)))
 
 (#%provide map) ; Explicitly export the function
 (#%provide accum) ; Explicitly export the function
 (#%provide filter) ; Explicitly export the function
+(#%provide enumerate-interval) ; Explicitly export the function
 (#%provide accum-n) ; Explicitly export the function
 (#%provide mmap) ; Explicitly export the function
+(#%provide flatmap) ; Explicitly export the function
