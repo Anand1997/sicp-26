@@ -1,5 +1,8 @@
 #lang sicp
 (#%require "ch2_2_conventional_interfaces.rkt") ; Import your custom module
+(#%require (only racket/base
+                 current-inexact-milliseconds)
+           (only racket/base time))
 
 (define empty-board '())
 ;; take first and iterate over rest
@@ -36,7 +39,6 @@
                    (queens-cols (- k 1))))))
   (queens-cols board-size))
 
-(queens 4)
 
 
 (define (queens-slow board-size)
@@ -51,4 +53,12 @@
                           (queens-cols (- k 1))))
                    (enumerate-interval 1 board-size)))))
   (queens-cols board-size))
-(queens-slow 4)
+
+(define (timer-benchmark proc . arg0)
+  (define start (current-inexact-milliseconds))
+  (apply proc arg0)
+  (define end (current-inexact-milliseconds))
+  (- end start))
+
+(timer-benchmark queens 8)
+(timer-benchmark queens-slow 8)
