@@ -5,9 +5,9 @@
 ;; take first and iterate over rest
 (define (attack? q1 q2)
   (let ((row-q1 (car q1))
-        (col-q1 (cdr q1))
+        (col-q1 (cadr q1))
         (row-q2 (car q2))
-        (col-q2 (cdr q2)))
+        (col-q2 (cadr q2)))
     (or (= row-q1 row-q2)
         (= (abs (- row-q1 row-q2))
            (abs (- col-q1 col-q2))))))
@@ -21,7 +21,7 @@
   (iter (cdr position)))
 
 (define (adjoin-position row k rest-of-queens)
-  (cons (cons row k) rest-of-queens))
+  (cons (list row k) rest-of-queens))
 
 (define (queens board-size)
   (define (queens-cols k)
