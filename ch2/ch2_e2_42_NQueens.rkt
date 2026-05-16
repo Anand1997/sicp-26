@@ -37,3 +37,18 @@
   (queens-cols board-size))
 
 (queens 4)
+
+
+(define (queens-slow board-size)
+  (define (queens-cols k)
+    (if (= k 0)
+        (list empty-board)
+        (filter
+          (lambda (position) (safe? position))
+          (flatmap (lambda (new-row)
+                     (map (lambda (rest-of-queens)
+                            (adjoin-position new-row k rest-of-queens))
+                          (queens-cols (- k 1))))
+                   (enumerate-interval 1 board-size)))))
+  (queens-cols board-size))
+(queens-slow 4)
